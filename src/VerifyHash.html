@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Property House Listings</title>
+    <title>Add New Listing</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -18,16 +18,16 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container" style="width: 1550px;">
+    <div class="container" style="width: 1350px;">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="text-center">Property House Listings</h1>
+          <h1 class="text-center">Add New Listing</h1>
           <hr/>
           <br/>
-          <div id="loader">
+          <div id="loader" style="display: none;">
             <p class="text-center">Loading...</p>
           </div>
-          <div id="content" style="display: none;">
+          <div id="content">
             <table class="table">
               <thead>
                 <tr>
@@ -41,13 +41,30 @@
                   <th scope="col">Price ($)</th>
                   <th scope="col">Owner Name</th>
                   <th scope="col">Owner Address</th>
-                  <th scope="col">Encrypted Hash</th>
                 </tr>
               </thead>
-              <tbody id="candidatesResults">
-              </tbody>
             </table>
             <hr/>
+            <form onSubmit="App.verifyHash(); return false;">
+              <h2>Verify Securely Listing Details:</h2>
+              <div class="form-group">
+                <label for="candidatesSelect">Select Property to Verify Hash: </label>
+                <select class="form-control" id="candidatesSelect">
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="enterHashtoVerify">Enter Encrypted Data to Compare with SHA256 Hash:</label>
+                <input type="text" class="form-control" id="enterHashtoVerify">
+              </div>
+
+              <button type="submit" class="btn btn-primary">Vote</button>
+              <hr />
+            </form>
+            <hr>
+              <div id="Result" class="alert alert-success text-center">
+                  <strong></strong>
+                  </div>
+            <hr>
             <p id="accountAddress" class="text-center"></p>
           </div>
         </div>
@@ -61,6 +78,5 @@
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
     <script src="js/app.js"></script>
-    
   </body>
 </html>

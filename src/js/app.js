@@ -30,6 +30,7 @@ App = {
       App.contracts.Election.setProvider(App.web3Provider);
 
       App.listenForEvents();
+      App.listenForEventsNotVerified();
 
       return App.render();
     });
@@ -41,13 +42,31 @@ App = {
       // Restart Chrome if you are unable to receive this event
       // This is a known issue with Metamask
       // https://github.com/MetaMask/metamask-extension/issues/2393
-      instance.votedEvent({}, {
+      instance.verifiedEvent({}, {
         fromBlock: 'latest',
         //toBlock: 'latest'
       }).watch(function(error, event) {
         console.log("event triggered", event)
+        $("#Result").html("Data Verified Successfully!");
         // Reload when a new vote is recorded
-        App.render();
+    //    App.render();
+      });
+    });
+  },
+
+  listenForEventsNotVerified: function() {
+    App.contracts.Election.deployed().then(function(instance) {
+      // Restart Chrome if you are unable to receive this event
+      // This is a known issue with Metamask
+      // https://github.com/MetaMask/metamask-extension/issues/2393
+      instance.notVerifiedEvent({}, {
+        fromBlock: 'latest',
+        //toBlock: 'latest'
+      }).watch(function(error, event) {
+        console.log("event triggered", event)
+        $("#Result").html("Data Verification Failed!");
+        // Reload when a new vote is recorded
+    //    App.render();
       });
     });
   },
@@ -92,9 +111,10 @@ App = {
           var price = candidate[8];
           var ownerName = candidate[9];
           var ownerAddress = candidate[10];
+          var tempHash = candidate[11];
 
           // Render candidate Result
-          var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + licenseNumber + "</td></td><td>" + registrationNumber + "</td></td><td>" + size + "</td></td><td>" + location + "</td></td><td>" + rooms + "</td></td><td>" + price + "</td></td><td>" + ownerName + "</td></td><td>" + ownerAddress + "</td></tr>"
+          var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + licenseNumber + "</td></td><td>" + registrationNumber + "</td></td><td>" + size + "</td></td><td>" + location + "</td></td><td>" + rooms + "</td></td><td>" + price + "</td></td><td>" + ownerName + "</td></td><td>" + ownerAddress + "</td><td>" + tempHash + "</td></tr>"
           candidatesResults.append(candidateTemplate);
 
           // Render candidate ballot option
@@ -110,6 +130,7 @@ App = {
       }
       loader.hide();
       content.show();
+      document.getElementById("Result").innerHTML = "";
     }).catch(function(error) {
       console.warn(error);
     });
@@ -147,8 +168,59 @@ App = {
     }).catch(function(err) {
       console.error(err);
     });
+  },
+
+  editListing: function() {
+    var candidateId = $('#candidatesSelect').val();
+    var ownerNameEdit = $('#ownerNameEdit').val();
+    var ownerAddressEdit = $('#ownerAddressEdit').val();
+
+    App.contracts.Election.deployed().then(function(instance) {
+    //  return instance.editCandidate(1, "Pathan", "0xd11d1CAa0ac51dc4e94ecE78F13fb4eCa2465596", { from: App.account });
+        return instance.editCandidate(candidateId, ownerNameEdit, ownerAddressEdit, { from: App.account });
+    }).then(function(result) {
+      // Wait for votes to update
+      $("#content").hide();
+      $("#loader").show();
+    }).catch(function(err) {
+      console.error(err);
+    });
+  },
+
+  testHash: function() {
+    var candidateId = $('#candidatesSelect').val();
+    var enterHash = $('#enterHash').val();
+    var ownerAddressEdit = $('#ownerAddressEdit').val();
+
+    App.contracts.Election.deployed().then(function(instance) {
+        return instance.hashSeriesNumber(enterHash, { from: App.account });
+    }).then(function(result) {
+      console.log(result);
+      // Wait for votes to update
+      $("#content").hide();
+      $("#loader").show();
+    }).catch(function(err) {
+      console.error(err);
+    });
+  },
+
+  verifyHash: function() {
+    var candidateId = $('#candidatesSelect').val();
+    var enterHashtoVerify = $('#enterHashtoVerify').val();
+    enterHashtoVerify = enterHashtoVerify.replace(/	+/g, "");
+    enterHashtoVerify = enterHashtoVerify.replace(/\d+/g, '');
+
+    App.contracts.Election.deployed().then(function(instance) {
+        return instance.verifyDocument(candidateId, enterHashtoVerify, { from: App.account });
+    }).then(function(result) {
+      // Wait for votes to update
+    //  $("#content").hide();
+    //  $("#loader").show();
+    }).catch(function(err) {
+      console.error(err);
+    });
   }
-};
+}
 
 $(function() {
   $(window).load(function() {
