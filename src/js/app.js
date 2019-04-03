@@ -162,9 +162,19 @@ App = {
       return instance.addCandidate(nameInput, licenseNumberInput, registrationNumberInput, sizeInput, locationInput, roomsInput, priceInput,ownerNameInput, { from: App.account });
     //  return instance.addCandidate("House MM", 2541, 2222, 240, "Johar", 6, 750, "Furqan");
     }).then(function(result) {
-      // Wait for votes to update
-      $("#content").hide();
-      $("#loader").show();
+
+      var dataToPrint = "	"+nameInput+"	"+licenseNumberInput+"	"+registrationNumberInput+"	"+sizeInput+"	"+locationInput+"	"+roomsInput+"	"+priceInput+"	"+ownerNameInput;
+      console.log(dataToPrint);
+
+      var hiddenElement = document.createElement('a');
+
+      hiddenElement.href = 'data:attachment/text,' + encodeURI(dataToPrint);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = 'Certificate of Ownership'+nameInput+'.txt';
+      hiddenElement.click();
+
+    //  $("#content").hide();
+    //  $("#loader").show();
     }).catch(function(err) {
       console.error(err);
     });
@@ -180,8 +190,20 @@ App = {
         return instance.editCandidate(candidateId, ownerNameEdit, ownerAddressEdit, { from: App.account });
     }).then(function(result) {
       // Wait for votes to update
-      $("#content").hide();
-      $("#loader").show();
+
+      var dataToPrint = "	"+ownerNameEdit;
+      console.log(dataToPrint);
+
+      var hiddenElement = document.createElement('a');
+
+      hiddenElement.href = 'data:attachment/text,' + encodeURI(dataToPrint);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = 'Certificate of Ownership.txt';
+      hiddenElement.click();
+
+
+    //  $("#content").hide();
+    //  $("#loader").show();
     }).catch(function(err) {
       console.error(err);
     });
