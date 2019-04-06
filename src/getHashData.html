@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Real Estate BlockChain</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+                <div class="container">
+                    <a class="navbar-brand" href="index.html"><img src="images\logo1.png" style="height: 60px;"/>&nbsp&nbsp&nbspRealEstate<span>&nbsp&nbspBlockChain</span></span></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="oi oi-menu"></span> Menu
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="ftco-nav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                            <li class="nav-item"><a href="property.html" class="nav-link">Property</a></li>
+                            <li class="nav-item"><a href="agents.html" class="nav-link">Agents</a></li>
+                            <li class="nav-item"><a href="verification.html" class="nav-link">Verification</a></li>
+                            <li class="nav-item"><a onclick="alertsignin()" class="nav-link" href="signin.html">Transaction</a></li>
+                            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                            <li class="nav-item cta"><a href="signin.html" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-In</a></li>
+                            <li class="nav-item cta cta-colored"><a href="signup.html" class="nav-link"><span class="icon-pencil"></span> Sign-Up</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <script>
+                    function alertsignin() {	alert("Please Sign In To Continue.")		}
+            </script>
+    <!-- END nav -->
+
+    <div class="hero-wrap" style="background-image: url('images/bg_1.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>/ Verify Securely Listing Details:</span></p>
+            <h1 class="mb-3 bread">Get Data from Hash:</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="width: 1350px;">
+      <div class="row">
+        <div class="col-lg-12">
+          <br/>
+          <div id="loader" style="display: none;">
+            <p class="text-center">Loading...</p>
+          </div>
+          <div id="content">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Property ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">License Number</th>
+                  <th scope="col">Registration Number</th>
+                  <th scope="col">Size (sq. fts)</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Rooms</th>
+                  <th scope="col">Price ($)</th>
+                  <th scope="col">Owner Name</th>
+                  <th scope="col">Owner Address</th>
+                </tr>
+              </thead>
+            </table>
+            <hr/>
+            <form onSubmit="App.getDataFromHash(); return false;">
+              <h2>Verify Securely Listing Details:</h2>
+
+              <div class="form-group">
+                <label for="HashtoVerify">Enter Encrypted SHA256 Hash to Verify and See Data:</label>
+                <input type="text" class="form-control" id="HashtoVerify">
+              </div>
+
+              <button id="submitHashButton" type="submit" class="btn btn-primary">Verify By Hash!</button>
+              <hr />
+            </form>
+            <hr>
+              <div id="ResultSuccess" class="alert alert-success text-center">
+                  <strong></strong>
+                  </div>
+              <div id="ResultFailed" class="alert alert-danger text-center">
+                      <strong></strong>
+                      </div>
+            <hr>
+            <div id="verifiedData">
+            <h2>Verified Property Details are :</h2>
+            <div class="form-group">
+              <label for="propertyIDInputVerified">Property ID:</label>
+              <input type="text" class="form-control has-success has-feedback" id="propertyIDInputVerified" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="nameInputVerified">Name:</label>
+              <input type="text" class="form-control" id="nameInputVerified" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="licenseNumberInputVerified">License Number:</label>
+              <input type="number" class="form-control" id="licenseNumberInputVerified" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="registrationNumberInputVerified">Registration Number:</label>
+              <input type="number" class="form-control" id="registrationNumberInputVerified" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="sizeInputVerified">Size (sq. fts):</label>
+              <input type="number" class="form-control" id="sizeInputVerified" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="locationInputVerified">Location:</label>
+              <input type="text" class="form-control" id="locationInputVerified" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="roomsInputVerified">Rooms:</label>
+              <input type="number" class="form-control" id="roomsInputVerified" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="priceInputVerified">Price: ($)</label>
+              <input type="number" class="form-control" id="priceInputVerified" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="ownerNameInputVerified">Owner Name:</label>
+              <input type="text" class="form-control" id="ownerNameInputVerified" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="ownerAddressInputVerified">Owner Address:</label>
+              <input type="text" class="form-control" id="ownerAddressInputVerified" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="hashInputVerified">Encrypted SHA256 Hash of Above Data:</label>
+              <input type="text" class="form-control" id="hashInputVerified" readonly disabled>
+            </div>
+            <div id="ResultSuccessVerified" class="alert alert-success text-center">
+                <strong>Thank You for Verifying Property Data Securely on the BlockChain!</strong>
+                </div>
+          </div>
+
+            <p id="accountAddress" class="text-center"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<br><br>
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">RealEstate BlockChain</h2>
+              <p>Turning Your Dreams into an Address</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-3 ml-md-5">
+              <h2 class="ftco-heading-2">Buy</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Houses &amp Buildings For Sale</a></li>
+                <li><a href="#" class="py-2 d-block">Houses &amp Buildings For Rent</a></li>
+                <li><a href="#" class="py-2 d-block">Plot For Sale</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Sell &amp Rent</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">House for Sale</a></li>
+                <li><a href="#" class="py-2 d-block">House For Rent</a></li>
+                <li><a href="#" class="py-2 d-block">Commercial Buildings For Sale</a></li>
+                <li><a href="#" class="py-2 d-block">Commercial Buildings For Rent</a></li>
+                <li><a href="#" class="py-2 d-block">Shop(s) For Sale</a></li>
+                <li><a href="#" class="py-2 d-block">Shop(s) For Rent</a></li>
+                <li><a href="#" class="py-2 d-block">Plot For Sale</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">NED University, Main Campus, Karachi</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">03208331383</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">&nbspblockchaindeveloper@gmail.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p>
+              Copyright &copy All rights reserved | Made  By <i class="icon-heart color-danger" aria-hidden="true"></i><a href="#">BlockChain Developers<i class="icon-heart color-danger" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+  function querySt(ji) {
+
+      hu = window.location.search.substring(1);
+      gy = hu.split("&");
+
+      for (i=0;i<gy.length;i++) {
+          ft = gy[i].split("=");
+          if (ft[0] == ji) {
+              return ft[1];
+          }
+      }
+  }
+  var hash = querySt("hash");
+  if(hash != null){
+  document.getElementById('HashtoVerify').value = hash;
+  }
+  </script>
+
+  </body>
+</html>

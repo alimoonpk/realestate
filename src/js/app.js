@@ -47,7 +47,9 @@ App = {
         //toBlock: 'latest'
       }).watch(function(error, event) {
         console.log("event triggered", event)
-        $("#Result").html("Data Verified Successfully!");
+        $("#ResultFailed").hide();
+        $("#ResultSuccess").html("Data Verified Successfully!");
+        $("#ResultSuccess").show();
         // Reload when a new vote is recorded
     //    App.render();
       });
@@ -64,7 +66,9 @@ App = {
         //toBlock: 'latest'
       }).watch(function(error, event) {
         console.log("event triggered", event)
-        $("#Result").html("Data Verification Failed!");
+        $("#ResultSuccess").hide();
+        $("#ResultFailed").html("Data Verification Failed!");
+        $("#ResultFailed").show();
         // Reload when a new vote is recorded
     //    App.render();
       });
@@ -79,6 +83,10 @@ App = {
     loader.show();
     content.hide();
 
+    $("#ResultSuccess").hide();
+    $("#ResultFailed").hide();
+    $("#verifiedData").hide();
+
     // Load account data
     web3.eth.getCoinbase(function(err, account) {
       if (err === null) {
@@ -86,6 +94,12 @@ App = {
         $("#accountAddress").html("Your Account: " + account);
       }
     });
+
+    web3.personal.unlockAccount("0xa6924b283daa62c3e9ed886e42f1c1068d6c20f1","ali",1000000, function(err, transactionHash) {
+  if (!err)
+    console.log(transactionHash);
+});
+
 
     // Load contract data
     App.contracts.Election.deployed().then(function(instance) {
@@ -170,7 +184,7 @@ App = {
 
       hiddenElement.href = 'data:attachment/text,' + encodeURI(dataToPrint);
       hiddenElement.target = '_blank';
-      hiddenElement.download = 'Certificate of Ownership'+nameInput+'.txt';
+      hiddenElement.download = 'Certificate of Ownership - '+nameInput+'.txt';
       hiddenElement.click();
 
     //  $("#content").hide();
@@ -241,7 +255,65 @@ App = {
     }).catch(function(err) {
       console.error(err);
     });
-  }
+  },
+
+getDataFromHash: function() {
+  var resultFound = 0;
+  var HashtoVerify = $('#HashtoVerify').val();
+  App.contracts.Election.deployed().then(function(instance) {
+    electionInstance = instance;
+    return electionInstance.candidatesCount();
+  }).then(function(candidatesCount) {
+
+    for (var i = 1; i <= candidatesCount; i++) {
+      electionInstance.candidates(i).then(function(candidate) {
+        var id = candidate[0];
+        var name = candidate[1];
+        var voteCount = candidate[2];
+        var licenseNumber = candidate[3];
+        var registrationNumber = candidate[4];
+        var size = candidate[5];
+        var location = candidate[6];
+        var rooms = candidate[7];
+        var price = candidate[8];
+        var ownerName = candidate[9];
+        var ownerAddress = candidate[10];
+        var tempHash = candidate[11];
+
+if(tempHash == HashtoVerify){
+  resultFound = 1;
+document.getElementById("propertyIDInputVerified").value = id;
+document.getElementById("nameInputVerified").value = name;
+document.getElementById("licenseNumberInputVerified").value = licenseNumber;
+document.getElementById("registrationNumberInputVerified").value = registrationNumber;
+document.getElementById("sizeInputVerified").value = size;
+document.getElementById("locationInputVerified").value = location;
+document.getElementById("roomsInputVerified").value = rooms;
+document.getElementById("priceInputVerified").value = price;
+document.getElementById("ownerNameInputVerified").value = ownerName;
+document.getElementById("ownerAddressInputVerified").value = ownerAddress;
+document.getElementById("hashInputVerified").value = tempHash;
+if(resultFound == 1){
+    $("#ResultSuccess").show();
+    $("#verifiedData").show();
+    $("#ResultSuccess").html("Data Verified Successfully!");
+    $("#ResultFailed").hide();
+    }
+}
+if(resultFound == 0){
+    $("#ResultSuccess").hide();
+    $("#ResultFailed").show();
+    $("#ResultFailed").html("Hash Data Verification Failed!");
+    $("#verifiedData").hide();
+    }
+
+      });
+    }
+    return electionInstance.voters(App.account);
+  })
+
+}
+
 }
 
 $(function() {
