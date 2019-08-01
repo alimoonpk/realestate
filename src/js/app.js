@@ -177,7 +177,8 @@ App = {
     //  return instance.addCandidate("House MM", 2541, 2222, 240, "Johar", 6, 750, "Furqan");
     }).then(function(result) {
 
-      var dataToPrint = "	"+nameInput+"	"+licenseNumberInput+"	"+registrationNumberInput+"	"+sizeInput+"	"+locationInput+"	"+roomsInput+"	"+priceInput+"	"+ownerNameInput;
+     
+      var dataToPrint = "Owner Name: "+ ownerNameInput+"\r\nHouse Name: " +nameInput+"\r\nLicense Number: "+ licenseNumberInput +"\r\nRegistration Number: "+ registrationNumberInput +"\r\nSize: "+ sizeInput +"\r\nLocation: "+ locationInput +"\r\nRooms: "+ roomsInput +"\r\nPrice: "+ priceInput;
       console.log(dataToPrint);
 
       var hiddenElement = document.createElement('a');
