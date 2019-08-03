@@ -29,19 +29,19 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 			<div class="container">
-					<a class="navbar-brand" href="sellerindex.html"><img src="images\logo1.png" style="height: 60px;"/>&nbsp&nbsp&nbspRealEstate<span>&nbsp&nbspBlockChain</span></span></a>
+					<a class="navbar-brand" href="index.html"><img src="images\logo1.png" style="height: 60px;"/>&nbsp&nbsp&nbspRealEstate<span>&nbsp&nbspBlockChain</span></span></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="oi oi-menu"></span> Menu
 					</button>
 
 					<div class="collapse navbar-collapse" id="ftco-nav">
 							<ul class="navbar-nav ml-auto">
-									<li class="nav-item active"><a href="sellerindex.html" class="nav-link">Home</a></li>
-									<li class="nav-item"><a href="sellerproperty.html" class="nav-link">Property</a></li>
-									<li class="nav-item"><a href="selleragents.html" class="nav-link">Agents</a></li>
-									<li class="nav-item"><a href="sellerverification.html" class="nav-link">Verification</a></li>
-									<li class="nav-item"><a href="sellertransaction.html" class="nav-link">Transaction</a></li>
-									<li class="nav-item"><a href="sellercontact.html" class="nav-link">Contact</a></li>
+									<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+									<li class="nav-item"><a href="property.html" class="nav-link">Property</a></li>
+									<li class="nav-item"><a href="agents.html" class="nav-link">Agents</a></li>
+									<li class="nav-item"><a href="validatorverification.html" class="nav-link">Verification</a></li>
+									<li class="nav-item active"><a href="sellertransaction.html" class="nav-link">Transaction</a></li>
+									<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 									<li class="nav-item cta"><a href="index.html" class="nav-link ml-lg-2"><span class="icon-user"></span> Log Out</a></li>
 									<li class="nav-item nav-link"><span style="margin-left:25%">Welcome<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Furqan!</span></li>
 							</ul>
@@ -55,7 +55,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-            <p class="breadcrumbs"><span class="mr-2"><a href="sellerindex.html">Home</a></span><span>/ Transaction</span></p>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span><span>/ Transaction</span></p>
             <h1 class="mb-3 bread">Welcome Furqan!</h1>
           </div>
         </div>
@@ -67,7 +67,6 @@
       <a class="btn btn-light btn-outline-dark" data-toggle="collapse" href="#Profile" role="button" aria-expanded="true" aria-controls="Profile">&nbsp&nbsp&nbsp&nbsp&nbsp Profile &nbsp&nbsp&nbsp&nbsp&nbsp</a>&nbsp&nbsp&nbsp&nbsp&nbsp
       <a class="btn btn-light btn-outline-dark" data-toggle="collapse" href="#property_detail" role="button" aria-expanded="true" aria-controls="property_detail">&nbsp&nbsp&nbsp&nbsp&nbsp Property Details &nbsp&nbsp&nbsp&nbsp&nbsp</a>
       &nbsp&nbsp&nbsp<a class="btn btn-light btn-outline-dark" data-toggle="collapse" href="#QR" role="button" aria-expanded="true" aria-controls="QR">&nbsp&nbsp&nbsp&nbsp&nbsp Generate QR &nbsp&nbsp&nbsp&nbsp&nbsp</a>
-      &nbsp&nbsp&nbsp<a class="btn btn-light btn-outline-dark" data-toggle="collapse" href="#transferownership" role="button" aria-expanded="true" aria-controls="transferownership">&nbsp&nbsp&nbsp&nbsp&nbsp Transfer Ownership &nbsp&nbsp&nbsp&nbsp&nbsp</a>
     </span>
   </p>
 <div class="collapse" id="Profile">
@@ -98,20 +97,7 @@
             </div>
             <div id="content">
               <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Property ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">License Number</th>
-                    <th scope="col">Registration Number</th>
-                    <th scope="col">Size (sq. fts)</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Rooms</th>
-                    <th scope="col">Price ($)</th>
-                    <th scope="col">Owner Name</th>
-                    <th scope="col">Owner Address</th>
-                  </tr>
-                </thead>
+                
               </table>
               <hr/>
               <form onSubmit="App.newListing(); return false;">
@@ -157,9 +143,9 @@
         </div>
       </div>
 
-       <span  style="padding-left:1%"><button type="submit" onclick="location.href= 'sellerindex.html' ;" class="btn btn-outline-dark">&nbsp&nbsp&nbsp&nbsp Cancel &nbsp&nbsp&nbsp&nbsp</button></span>
     </div>
 </div>
+
 
     <div class="collapse" id="QR">
       <div class="card card-header">
@@ -198,62 +184,6 @@
       </div>
   </div>
 
-  <div class="collapse" id="transferownership">
-    <div class="card card-header">
-      <div class="container" style="width: 1350px;">
-        <div class="row" style="margin-left: -19%;">
-          <div class="col-lg-12">
-            <br/>
-            <div id="loader" style="display: none;">
-              <p class="text-center">Loading...</p>
-            </div>
-            <div id="content">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Property ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">License Number</th>
-                    <th scope="col">Registration Number</th>
-                    <th scope="col">Size (sq. fts)</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Rooms</th>
-                    <th scope="col">Price ($)</th>
-                    <th scope="col">Owner Name</th>
-                    <th scope="col">Owner Address</th>
-                  </tr>
-                  <tbody id="candidatesResults">
-                  </tbody>
-                </thead>
-              </table>
-              <hr/>
-
-              <form onSubmit="App.editListing(); return false;">
-                <div class="form-group">
-                  <label for="candidatesSelect">Select Property to Change Ownership: </label>
-                  <select class="form-control" id="candidatesSelect">
-                  </select>
-                </div>
-                <hr/>
-                <h2>Transfer Selected Property to New Owner:</h2>
-                <div class="form-group">
-                  <label for="ownerNameEdit">New Owner Name:</label>
-                  <input type="text" class="form-control" id="ownerNameEdit" required>
-                </div>
-                <div class="form-group">
-                  <label for="ownerAddressEdit">New Owner Address:</label>
-                  <input type="text" class="form-control" id="ownerAddressEdit" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Transfer Ownership</button>
-                <hr />
-              </form>
-              <p id="accountAddress" class="text-center"></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
 
 <!--Form Ends -->
 

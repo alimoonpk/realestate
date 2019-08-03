@@ -40,10 +40,10 @@
 									<li class="nav-item"><a href="property.html" class="nav-link">Property</a></li>
 									<li class="nav-item"><a href="agents.html" class="nav-link">Agents</a></li>
 									<li class="nav-item"><a href="validatorverification.html" class="nav-link">Verification</a></li>
-									<li class="nav-item active"><a href="buyertransaction.html" class="nav-link">Transaction</a></li>
+									<li class="nav-item active"><a href="KDAtransaction.html" class="nav-link">Transaction</a></li>
 									<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 									<li class="nav-item cta"><a href="index.html" class="nav-link ml-lg-2"><span class="icon-user"></span> Log Out</a></li>
-									<li class="nav-item nav-link"><span style="margin-left:25%">Welcome<br>&nbsp&nbsp&nbsp&nbsp&nbsp Abtahaj!</span></li>
+									<li class="nav-item nav-link"><span style="margin-left:25%">Welcome<br>&nbsp&nbsp&nbsp KDA!</span></li>
 							</ul>
 					</div>
 			</div>
@@ -56,13 +56,36 @@
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
             <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span><span>/ Transaction</span></p>
-            <h1 class="mb-3 bread">Welcome Abtahaj!</h1>
+            <h1 class="mb-3 bread">Welcome KDA Admin!</h1>
           </div>
         </div>
       </div>
     </div>
-    
-<div  id="transferownership">
+<!--Form Starts-->
+<p>
+  <span class="navbar navbar-expand-lg" style="background-color:beige">
+      <a class="btn btn-light btn-outline-dark" data-toggle="collapse" href="#Profile" role="button" aria-expanded="true" aria-controls="Profile">&nbsp&nbsp&nbsp&nbsp&nbsp Profile &nbsp&nbsp&nbsp&nbsp&nbsp</a>&nbsp&nbsp&nbsp&nbsp&nbsp
+      <a class="btn btn-light btn-outline-dark" data-toggle="collapse" href="#transferownership" role="button" aria-expanded="true" aria-controls="Transfer">&nbsp&nbsp&nbsp&nbsp&nbsp Transfer OwnerShip &nbsp&nbsp&nbsp&nbsp&nbsp</a>
+  </span>    
+  </p>
+<div class="collapse" id="Profile">
+    <div class="card card-header">
+       Profile <br>
+       <h5>First Name: <b>KDA</b></h5><br>
+       <h5>Last Name: <b>Admin</b> </h5><br>
+       <h5>Email: <b>KDA@gmail.com</b> </h5><br>
+       <h5>Password: <b>KDA</b> </h5><br>
+       <h5>Contact Number: <b>0320 2334123</b> </h5><br>
+       <h5>Address: <b>abc road</b> </h5><br>
+       <h5>CNIC Number: <b>4221-2321-1232-1</b> </h5><br>
+       <h5>Waller Address: <b>asdmad1231esad</b> </h5><br>
+       <h5>Profile Picture: <b>PIC</b></h5><br>
+    </div>
+</div>
+
+<!--Transfer Ownership Starts-->
+
+  <div class="collapse" id="transferownership">
     <div class="card card-header">
       <div class="container" style="width: 1350px;">
         <div class="row" style="margin-left: -19%;">
@@ -92,6 +115,26 @@
                 </thead>
               </table>
               <hr/>
+
+              <form onSubmit="App.editListing(); return false;">
+                <div class="form-group">
+                  <label for="candidatesSelect">Select Property to Change Ownership: </label>
+                  <select class="form-control" id="candidatesSelect">
+                  </select>
+                </div>
+                <hr/>
+                <h2>Transfer Selected Property to New Owner:</h2>
+                <div class="form-group">
+                  <label for="ownerNameEdit">New Owner Name:</label>
+                  <input type="text" class="form-control" id="ownerNameEdit" required>
+                </div>
+                <div class="form-group">
+                  <label for="ownerAddressEdit">New Owner Address:</label>
+                  <input type="text" class="form-control" id="ownerAddressEdit" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Transfer Ownership</button>
+                <hr />
+              </form>
               <p id="accountAddress" class="text-center"></p>
             </div>
           </div>
@@ -99,72 +142,8 @@
       </div>
     </div>
 </div>
-    
-    
-<!--Form Starts-->
-<p>
-  <span class="navbar navbar-expand-lg" style="background-color:beige">
-      <a class="btn btn-light btn-outline-dark" data-toggle="collapse" href="#Profile" role="button" aria-expanded="true" aria-controls="Profile">&nbsp&nbsp&nbsp&nbsp&nbsp Profile &nbsp&nbsp&nbsp&nbsp&nbsp</a>&nbsp&nbsp&nbsp&nbsp&nbsp
-      <a class="btn btn-light btn-outline-dark" data-toggle="collapse" href="#Transfer" role="button" aria-expanded="true" aria-controls="Transfer">&nbsp&nbsp&nbsp&nbsp&nbsp Transfer &nbsp&nbsp&nbsp&nbsp&nbsp</a>
-  </span>    
-  </p>
-<div class="collapse" id="Profile">
-    <div class="card card-header">
-       Profile <br>
-       <h5>First Name: <b>Abtahaj</b></h5><br>
-       <h5>Last Name: <b>Ashraf</b> </h5><br>
-       <h5>Email: <b>abtahajashraf@gmail.com</b> </h5><br>
-       <h5>Password: <b>ashraf</b> </h5><br>
-       <h5>Contact Number: <b>0320 2334123</b> </h5><br>
-       <h5>Address: <b>abc road</b> </h5><br>
-       <h5>CNIC Number: <b>4221-2321-1232-1</b> </h5><br>
-       <h5>Waller Address: <b>asdmad1231esad</b> </h5><br>
-       <h5>Profile Picture: <b>PIC</b></h5><br>
-    </div>
-</div>
 
-<div class="collapse" id="Transfer">
-    <div class="card card-header">
-       Transfer
-       <form class="form-horizontal" action="#TransferSuccessfully" method="POST">
-         <div class="form-group">
-           <label class="control-label col-sm-4" for="buyerpubkey">Enter Your Public Key:</label>
-           <div class="col-sm-4">
-             <input type="text" class="form-control" id="buyerpubkey" placeholder="Pub Key" required="required">
-           </div>
-         </div>
-         <div class="form-group">
-           <label class="control-label col-sm-4" for="buyerwallet">Enter Your Wallet Number:</label>
-           <div class="col-sm-4"> 
-             <input type="text" class="form-control" id="buyerwallet" placeholder="Wallet Number" required="required">
-           </div>
-         </div>
-         <div class="form-group">
-          <label class="control-label col-sm-4" for="amount">Enter Amount In Ether:</label>
-          <div class="col-sm-4"> 
-            <input type="number" class="form-control" id="amount" placeholder="Amount" required="required">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-4" for="sellerpubkey">Enter Seller's Public Key:</label>
-          <div class="col-sm-4"> 
-            <input type="text" class="form-control" id="sellerpubkey" placeholder="Pub Key" required="required">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-4" for="sellerwaller">Enter Seller Wallet Number:</label>
-          <div class="col-sm-4"> 
-            <input type="text" class="form-control" id="sellerwallet" placeholder="Wallet Number" required="required">
-          </div>
-        </div>
-        <div class="form-group"> 
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-outline-dark">Send Money</button>
-            </div>
-        </div>  
-       </form>
-    </div>
-</div>
+<!--Transfer Ownership Ends-->
 <!--Form Ends -->  
     
 <br><br><br><br><br><br>

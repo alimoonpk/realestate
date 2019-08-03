@@ -17,7 +17,7 @@ var objPeople = [
 function buyer(form) {
 			if (form.email.value=="buyer@gmail.com") { 
 			if (form.pass.value=="buyer") {              
-			location="buyerindex.html" 
+			location="buyertransaction.html" 
 			} else {
 			alert("Invalid Password")
 			}
@@ -27,7 +27,7 @@ function buyer(form) {
 function seller(form) {
 			if (form.email.value=="seller@gmail.com") { 
 			if (form.pass.value=="seller") {              
-			location="sellerindex.html" 
+			location="sellertransaction.html" 
 			} else {
 			alert("Invalid Password")
 			}
@@ -35,9 +35,9 @@ function seller(form) {
 			}
 			}
 function validator(form) {
-			if (form.email.value=="validator@gmail.com") { 
-			if (form.pass.value=="validator") {              
-			location="validatorindex.html" 
+			if (form.email.value=="KDA@gmail.com") { 
+			if (form.pass.value=="kda") {              
+			location="validatortransaction.html" 
 			} else {
 			alert("Invalid Password")
 			}
